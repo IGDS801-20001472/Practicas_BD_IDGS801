@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+    
+{% import "_macros.html" as macros%}
+<div class="content-pedido">
+    <form action="/guardar_cambios" method="POST">
+        <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
+        
+      
+        <div>
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nom" name="nombre" value="{{ pedido.nombre }}"><br>
+        </div>
+        
+        <div>
+            <label for="direccion">Dirección:</label><br>
+            <input type="text" id="direccion" name="direccion" value="{{ pedido.direccion }}"><br>
+        </div>
+        
+        <div>
+            <label for="telefono">Teléfono:</label><br>
+            <input type="text" id="telefono" name="telefono" value="{{ pedido.telefono }}"><br>
+        </div>
+        
+        <div>
+            <label>Ingredientes:</label><br>
+    <input type="checkbox" id="Jamon" name="ingredientes" value="Jamon" {% if 'Jamon' in pedido.ingredientes %} checked {% endif %}>
+    <label for="Jamon">Jamón</label><br>
+    
+    <input type="checkbox" id="piña" name="ingredientes" value="Pinia" {% if 'Pinia' in pedido.ingredientes %} checked {% endif %}>
+    <label for="piña">Piña</label><br>
+
+    <input type="checkbox" id="Champiniones" name="ingredientes" value="Champiniones" {% if 'Champiniones' in pedido.ingredientes %} checked {% endif %}>
+    <label for="Champiniones">Champiñones</label><br>
+            
+        </div>
+        
+        <div>
+            <label>Tamaño:</label><br>
+            <input type="radio" id="chica" name="tamanio" value="Chica" {% if pedido.tamanio == 'Chica' %} checked {% endif %}>
+            <label for="chica">Chica</label><br>
+            
+            <input type="radio" id="mediana" name="tamanio" value="Mediana" {% if pedido.tamanio == 'Mediana' %} checked {% endif %}>
+            <label for="mediana">Mediana</label><br>
+            
+            <input type="radio" id="grande" name="tamanio" value="Grande" {% if pedido.tamanio == 'Grande' %} checked {% endif %}>
+            <label for="grande">Grande</label><br>
+        </div>
+    
+        <div>
+            <label for="num_pizzas">Número de Pizzas:</label><br>
+            <input type="text" id="num_pizzas" name="num_pizzas" value="{{ pedido.num_pizzas }}"><br>
+        </div>
+
+        <div>
+            <label for="num_pizzas">Dia:</label><br>
+            <input type="text" id="num_pizzas" name="num_pizzas" value="{{ pedido.dia }}"><br>
+        </div>
+        <div>
+            <label for="num_pizzas">Mes:</label><br>
+            <input type="text" id="num_pizzas" name="num_pizzas" value="{{ pedido.mes }}"><br>
+        </div>
+        <div>
+            <label for="num_pizzas">Año:</label><br>
+            <input type="text" id="num_pizzas" name="num_pizzas" value="{{ pedido.anio }}"><br>
+        </div>
+        
+        
+       
+        <div>
+            <input type="hidden" id="subtotal" name="subtotal" value="{{ pedido.subtotal }}"><br>
+        </div>
+
+
+        <input type="hidden" name="pedido_index" value="{{ pedido_index }}">
+        <input type="hidden" name = "csrf_token" value="{{ csrf_token() }}">
+        <input type="submit" value="Modificar Pedido">
+    </form>
+    
+</div>
+
+{% endblock %}

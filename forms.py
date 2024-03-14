@@ -1,4 +1,4 @@
-from wtforms import validators,StringField, TelField, IntegerField, EmailField, Form
+from wtforms import validators,StringField, TelField, IntegerField, EmailField, Form, DecimalField
 
 
 class UserFormEmp(Form):
@@ -20,5 +20,28 @@ class UserFormEmp(Form):
         validators.DataRequired(message = "El campo es requerido"),
         validators.length(min=4, max=15, message="ingresa sueldo valido")
         ])
+
+class PedidosForm(Form):
+    id = TelField('id', [validators.number_range(min = 1, max = 20, message = 'valor no valido')])
+    nombre = StringField('nombre', [
+        validators.DataRequired(message = "El campo es requerido"),
+        validators.length(min=4, max=30, message="ingresa nombre valido")
+        ])
+    direccion = StringField('direccion')
+    telefono = StringField('telefono', [
+        validators.DataRequired(message = "El campo es requerido"),
+        validators.length(min=10, max=10, message="ingresa Telefono valido")
+        ])
+    ingredientes = StringField('ingredientes')
+    numPizzas = IntegerField('num Pizzas', [
+        validators.DataRequired(message = "El campo es requerido"),
+        validators.length(min=1, message="ingresa Cantidad valido")
+        ])
+    tamanio = StringField('tamanio')
+    subtotal = IntegerField('subtotal')
+    dia = IntegerField('dia')
+    mes = IntegerField('mes')
+    anio = IntegerField('anio')
+
     
     
